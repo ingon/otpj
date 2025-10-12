@@ -1,0 +1,53 @@
+plugins {
+    id 'java-library'
+    id "com.vanniktech.maven.publish" version "0.34.0"
+}
+
+version = '1.0.0'
+group = 'dev.ingon'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+}
+
+mavenPublishing {
+  coordinates("dev.ingon", "otpj", "1.0.0")
+
+  pom {
+    name = "otpj"
+    description = "A library to work with OTP and TOTP"
+    inceptionYear = "2020"
+    url = "https://github.com/ingon/otpj/"
+    licenses {
+      license {
+        name = "MIT License"
+        url = "http://www.opensource.org/licenses/mit-license.php"
+      }
+    }
+    developers {
+      developer {
+        id = "ingon"
+        name = "Nikolay Petrov"
+        url = "https://github.com/ingon/"
+      }
+    }
+    scm {
+      url = "https://github.com/ingon/otpj/"
+      connection = "scm:git:git://github.com/ingon/otpj.git"
+      developerConnection = "scm:git:ssh://git@github.com/ingon/otpj.git"
+    }
+  }
+
+  publishToMavenCentral()
+
+  signAllPublications()
+}
