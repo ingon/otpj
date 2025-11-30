@@ -37,6 +37,12 @@ public class TOTPGenerator extends OTPGenerator {
         return new TOTPGenerator(algo, secret, digits, period);
     }
 
+    public static TOTPGenerator fromEncodedSecret(String secret) {
+        String base = secret.replaceAll("\\s", "");
+        byte[] data = Base32.decode(base);
+        return new TOTPGenerator(OTPAlgorithm.SHA1, data, 6);
+    }
+
     public TOTPGenerator(OTPAlgorithm algorithm, byte[] secret, int digits) {
         this(algorithm, secret, digits, 30);
     }
